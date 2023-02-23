@@ -1,0 +1,58 @@
+body {
+
+    margin:0;
+    padding:0
+}
+p,h1 {
+    font-family: 'Overpass', sans-serif;
+    font-weight: 300;
+    margin: 20px;
+    text-align: justify;
+}
+.in-text-img {
+    float: left;
+    margin: 20px 20px;
+    border: 1px solid lavender;
+}
+
+.square {
+    margin: 0;
+}
+
+#top-panel {
+    filter: drop-shadow(0 1px 1rem rgba(0, 0, 0, 0.445));
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    margin: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    background-color: lavender;
+    color: #372849;
+    font-size: 17px;
+    line-height: 90%;
+}
+
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#textfield {
+    max-width: 1000px;
+    min-width: 700px;
+    overflow-wrap: break-word;
+    color: lavender;
+    background-color: #372849;
+    width: 80%;
+    height: fit-content;
+    font-size: 30px;
+
+}
+.txt {
+    max-width: 1000px;
+    font-size: 20px;
+}

@@ -1,0 +1,28 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse     
+}
+
+p {
+    margin: 5px;
+}
+.id {
+    margin: 30px;
+}
+.table {
+    font-family: 'Overpass', sans-serif;
+    font-weight: 500;
+}
+.name {
+    background-color: #93c47d;
+}
+.geography {
+    background-color: #6d9eeb;
+    color: white;
+}
+.center {
+    text-align: center;
+}
+.cell {
+    width: 200px;
+}
