@@ -1,0 +1,64 @@
+
+body nav { 
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: column;
+    background: 
+    radial-gradient(rgb(129, 124, 83) 1px, transparent 2px),
+    #fff;
+    background-size: 20px 20px;
+    background-position: 20px 10px;
+    border: 1px solid black ;
+    border-radius: 10px;
+    position: fixed;
+}
+
+a, h1 {
+    margin-left: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+nav a p {
+    font-size: large;
+}
+
+
+.food_detailed {
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    background: 
+    radial-gradient(rgba(122, 122, 122, 0.253) 1px, black 2px),
+    #2e220b6c;
+    color: white;
+    background-size: 20px 20px;
+    background-position: 20px 10px;
+    display: flex;
+    justify-items: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.food_detailed div {
+    margin-left: 10px;
+}
+.food_detailed div p {
+    margin-left: 10px;
+    z-index: 10;
+    background-color: #000;
+}
+
+.food_detailed img {
+    height: 99%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid#000;
+    border-radius: 10px 0 10px 10px;
+
+  
+}

@@ -1,0 +1,35 @@
+p, body {margin: 0;}
+
+body nav {
+    position: fixed;
+    background-color: rgb(159, 177, 189);
+    width: 100%;
+    height: 50px;
+}
+
+li {
+    position: relative;
+    left: -10px;
+    color: #94AF9F;
+}
+
+
+.books_list {
+    top: 50px;
+    z-index: -1;
+    height: 100%;
+    width: fit-content;
+    position: fixed;
+    border-right: 1px solid #94AF9F;
+}
+
+.container {
+    z-index: -2;
+    top: 32px;
+    left: 240px;
+  
+
+    position: relative;
+    width: 100%;
+    height: 2000px;
+}
