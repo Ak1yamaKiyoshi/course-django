@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile maker </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+</head>
+<body>
+
+
+    <!-- Create Your Profile!  -->
+
+    <form action="">        
+        <div>
+
+            <label for="username"> enter your username</label>
+            <input type="text" id="username">
+        </div>
+        <div>
+
+            <label> Enter your email </label>
+            <input type="email">
+        </div>
+        <div>
+
+            <label> enter date of birth </label>
+            <input type="date">
+        </div>
+        <div>
+
+            <label> Chose time of birth </label>
+            <input type="time"> 
+        </div>
+        <div>
+
+            <label> upload profile picture </label>
+            <input type="file" id="image" accept="image/png, image/jpeg">
+        </div>
+        <div>
+
+            <label> enter your gender </label>
+            <label> female
+                <span></span>
+                <input type="radio" name="gender" checked/>
+            </label>
+
+            <label>male
+                <input type="radio" name="gender" />
+                <span></span>
+            </label>
+
+
+            <label>other
+                <input type="radio" name="gender" />
+                <span></span>   
+            </label>
+        </div>
+        <div>
+
+            <label> chose country where you live in </label>
+            <select id="country">
+                <option value="ukraine">Ukraine</option>
+                <option value="germany">Germany</option>
+                <option value="polish">Polish</option>
+                <option value="italy">Italy</option>
+            </select>
+        </div>
+        <div>
+            <label> pick your favourite color </label>
+            <input type="color" id="color">
+        </div >
+
+        <div>
+            <label> pick your favourite number </label>
+            <input type="number">
+        </div>
+        
+        <div>
+            <label> rate yourself (0-10) </label>
+            <input type="range" min="0" max="10" step="1" />
+        </div>
+        
+        <input type="submit" value="Submit">
+
+    </form>
+    
+    </html>
