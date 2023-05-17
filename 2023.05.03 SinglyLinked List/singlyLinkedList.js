@@ -75,6 +75,47 @@ class SinglyLinkedList {
     return this.lengthRecursion(ptr.next, counter + 1); // return result of called function on next node
   }
 
+
+  /** 
+   * Removes all existing nodes with given value from list
+   * @param value - value to delete from list 
+  */
+  removeAllValueAppearences1(value) {
+    if (!this.head) return;
+    
+    let tmp = this.head; // (current) pointer to iterate trought list 
+    let tmp2 = null; // (previous) pointer for deleting operation 
+    
+    while (tmp.next) { // iterate throught list 
+      tmp2 = tmp; // assign value of previous node 
+      tmp = tmp.next; // move to the next node
+      
+      if (tmp == this.head && tmp.value == value) this.head = this.head.next;
+      
+      else if (tmp.value == value) { // if we found node with needed value 
+        while(tmp.next && tmp.next.value == value) tmp = tmp.next;
+        tmp2.next = tmp.next; // delete (unlinlk) current ( tmp ) node from list
+      }
+    }
+  }
+  removeAllValueAppearences(value) {
+    if (!this.head) return;
+
+    let tmp = this.head; // pointer to iterate trought list 
+    let tmp2 = null; // pointer for deleting operation 
+
+    while (tmp) { // iterate throught list 
+      if (tmp.value == value && tmp2 == null) // if current head is value to delete  
+        this.head = this.head.next; // move head to next node 
+      else if (tmp.value == value) // else if current node contains value to delete  
+        tmp2.next = tmp.next; // delete (unlink) current node 
+      else 
+        tmp2 = tmp; // assign value of previous node 
+
+      tmp = tmp.next; // move to the next node
+    }
+  }
+
   // TODO: 
   // TODO NOW: 
   /* removeAll */
@@ -146,6 +187,34 @@ class TestSinglyLinkedList {
     console.log(` > Length test passed: ${!tests.has(false)}`)
   }
 
+  removeAllTest() {
+    let list = new SinglyLinkedList(); // list 
+    let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
+    tests.add( list.lengthRecursion() == 0 ); // if list is empty, length would be zero, and test is true 
+    // list.append(1); // 1 -> 1
+    list.append(1); 
+    list.append(1); 
+    list.append(1); 
+    list.append(1); 
+    list.append(9); 
+    list.append(1); 
+    list.append(1); 
+    list.append(3); 
+    list.append(1); 
+    list.append(1); 
+    list.append(2); 
+    list.append(1); 
+    list.append(1); 
+    list.append(4); 
+    list.append(1); 
+    list.append(1);
+    list.append(1); 
+    list.append(1);
+    console.log(list.print())
+    list.removeAllValueAppearences(1);
+    console.log(list.print())
+  }
+
   /* insert test*/
   /* removeLast test*/
   /* removeAll  test */
@@ -157,3 +226,4 @@ test1.appendTest();
 test1.printTest();
 test1.lengthCycleTest();
 test1.lengthRecursionTest();
+test1.removeAllTest()
