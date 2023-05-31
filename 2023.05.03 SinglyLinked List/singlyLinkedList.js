@@ -1,9 +1,9 @@
 class tNode {
-  constructor(value) {
+  constructor(value, next = null) {
     // node value 
     this.value = value;
     // node link ( null by default )
-    this.next = null;
+    this.next = next;
   }
 }
 
@@ -70,7 +70,7 @@ class SinglyLinkedList {
    * @param counter current length
    * @returns counter length of singly linked list from head  
   */
-  lengthRecursion(ptr=this.head, counter=0) {
+  lengthRecursion(ptr = this.head, counter = 0) {
     if (!ptr) return counter; // if pointer is null, return counter 
     return this.lengthRecursion(ptr.next, counter + 1); // return result of called function on next node
   }
@@ -82,22 +82,24 @@ class SinglyLinkedList {
   */
   removeAllValueAppearences1(value) {
     if (!this.head) return;
-    
+
     let tmp = this.head; // (current) pointer to iterate trought list 
     let tmp2 = null; // (previous) pointer for deleting operation 
-    
+
     while (tmp.next) { // iterate throught list 
       tmp2 = tmp; // assign value of previous node 
       tmp = tmp.next; // move to the next node
-      
+
       if (tmp == this.head && tmp.value == value) this.head = this.head.next;
-      
+
       else if (tmp.value == value) { // if we found node with needed value 
-        while(tmp.next && tmp.next.value == value) tmp = tmp.next;
+        while (tmp.next && tmp.next.value == value) tmp = tmp.next;
         tmp2.next = tmp.next; // delete (unlinlk) current ( tmp ) node from list
       }
     }
   }
+
+
   removeAllValueAppearences(value) {
     if (!this.head) return;
 
@@ -109,22 +111,57 @@ class SinglyLinkedList {
         this.head = this.head.next; // move head to next node 
       else if (tmp.value == value) // else if current node contains value to delete  
         tmp2.next = tmp.next; // delete (unlink) current node 
-      else 
+      else
         tmp2 = tmp; // assign value of previous node 
 
       tmp = tmp.next; // move to the next node
     }
   }
 
-  // TODO: 
-  // TODO NOW: 
-  /* removeAll */
-  
-  /* insert */
-  /* removeLast */
-  /* merge */
-}
 
+  /**
+   * Deletes first occurence of value in list 
+   * @param value - value to delete 
+  */
+  removeFirst(value) {
+    let tmp = this.head; // pointer to iterate trought all list 
+    let tmp1 = null; // will be used for deletion 
+
+    if (value == this.head.value) // if value to delete is first value in list 
+      // move head pointer to delete it 
+      return this.head = this.head.next
+
+    while (tmp && !(tmp.value == value)) { // wile tmp is not null 
+      tmp1 = tmp; // save previous value 
+      tmp = tmp.next; // iterate trougth list 
+    }
+
+    tmp1.next = tmp.next // unlink middle node (tmp) so it will be deleted 
+  }
+
+  /**
+   * Inserts given value after index
+   * @param value - value to insert 
+   * @param index - index after to insert 
+  */
+  insert(value, index) {
+    // if index is incorrect return from function s
+    if (index < 0 || index >= this.lengthCycle()) return;
+
+    if (index == 0) // if inserting at head 
+      // insert node with pointer to head before head 
+      return this.head = new tNode(value, this.head);
+
+    let counter = 0; // value to track current index 
+    let tmp = this.head; // value to iterate trougth list 
+
+    while (counter++ < index) // go to needed index in list  
+      tmp = tmp.next; // iterate trought list   
+
+    // insert value after that index 
+    tmp.next = new tNode(value, tmp.next)
+  }
+}
 
 class TestSinglyLinkedList {
   appendTest() {
@@ -158,67 +195,87 @@ class TestSinglyLinkedList {
   lengthCycleTest() {
     let list = new SinglyLinkedList(); // list 
     let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
-    tests.add( list.lengthCycle() == 0 ); // if list is empty, length would be zero, and test is true 
+    tests.add(list.lengthCycle() == 0); // if list is empty, length would be zero, and test is true 
     list.append(1); // 1
     list.append(1); // 1 -> 1
     list.append(1); // 1 -> 1 -> 1
-    tests.add( list.lengthCycle() == 3 ); 
+    tests.add(list.lengthCycle() == 3);
     list.append(2); // 1 -> 1 -> 1 -> 2
     list.append(2); // 1 -> 1 -> 1 -> 2 -> 2
     list.append(2); // 1 -> 1 -> 1 -> 2 -> 2 -> 2
-    tests.add( list.lengthCycle() == 6 );  
-    
+    tests.add(list.lengthCycle() == 6);
+
     console.log(` > Length test passed: ${!tests.has(false)}`)
   }
 
   lengthRecursionTest() {
     let list = new SinglyLinkedList(); // list 
     let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
-    tests.add( list.lengthRecursion() == 0 ); // if list is empty, length would be zero, and test is true 
+    tests.add(list.lengthRecursion() == 0); // if list is empty, length would be zero, and test is true 
     list.append(1); // 1
     list.append(1); // 1 -> 1
     list.append(1); // 1 -> 1 -> 1
-    tests.add( list.lengthRecursion() == 3 ); 
+    tests.add(list.lengthRecursion() == 3);
     list.append(2); // 1 -> 1 -> 1 -> 2
     list.append(2); // 1 -> 1 -> 1 -> 2 -> 2
     list.append(2); // 1 -> 1 -> 1 -> 2 -> 2 -> 2
-    tests.add( list.lengthRecursion() == 6 );  
-    
+    tests.add(list.lengthRecursion() == 6);
+
     console.log(` > Length test passed: ${!tests.has(false)}`)
   }
 
   removeAllTest() {
     let list = new SinglyLinkedList(); // list 
     let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
-    tests.add( list.lengthRecursion() == 0 ); // if list is empty, length would be zero, and test is true 
-    // list.append(1); // 1 -> 1
-    list.append(1); 
-    list.append(1); 
-    list.append(1); 
-    list.append(1); 
-    list.append(9); 
-    list.append(1); 
-    list.append(1); 
-    list.append(3); 
-    list.append(1); 
-    list.append(1); 
-    list.append(2); 
-    list.append(1); 
-    list.append(1); 
-    list.append(4); 
-    list.append(1); 
-    list.append(1);
-    list.append(1); 
-    list.append(1);
-    console.log(list.print())
+    // list.append(1); // 1 -> 1list.append(1); 
+    list.append(1); list.append(1); list.append(1);
+    list.append(9); list.append(1); list.append(1);
+    list.append(3); list.append(1); list.append(1);
+    list.append(2); list.append(1); list.append(1);
+    list.append(4); list.append(1); list.append(1);
+    list.append(1); list.append(1);
+    // list should look like: 1 1 1 1 9 1 1 3 1 1 2 1 1 4 1 1 1 1 
     list.removeAllValueAppearences(1);
-    console.log(list.print())
+    tests.add(list.print() == "9 3 2 4 ");
+    console.log(` > RemoveAppearences test passed: ${!tests.has(false)}`)
   }
 
-  /* insert test*/
-  /* removeLast test*/
-  /* removeAll  test */
-  /* merge test */
+  removeFirstTest() {
+    let list = new SinglyLinkedList(); // list 
+    let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
+
+    // list.append(1); // 1 -> 1
+    list.append(1);
+    list.append(3);
+    list.append(2);
+    list.append(5);
+    // now list looks like: "1 3 2 5 "
+    list.removeFirst(1);
+    tests.add("3 2 5 " == list.print());
+    list.removeFirst(2);
+    tests.add("3 5 " == list.print());
+    list.removeFirst(5);
+    tests.add("3 " == list.print());
+    console.log(` > RemoveFirst test passed: ${!tests.has(false)}`)
+  }
+
+  insertTests() {
+    let list = new SinglyLinkedList(); // list 
+    let tests = new Set(); // set for tests ( if one test is false or true, that value will be in set )
+    list.insert(1, 0); // insert at head case
+    tests.add(list.print() == "1 ");
+    list.append(8);
+    list.append(8);
+    list.append(8);
+    list.insert(2, 1);
+    list.insert(3, 2);
+    list.insert(4, 1);
+    tests.add("8 8 2 8 " == list.print());
+    list.insert(40, list.lengthCycle() - 1);
+    list.insert(90, list.lengthCycle());
+    console.log(list.print())
+  }
+  // TODO: COMPLETE TEST 
 }
 
 test1 = new TestSinglyLinkedList();
@@ -227,3 +284,5 @@ test1.printTest();
 test1.lengthCycleTest();
 test1.lengthRecursionTest();
 test1.removeAllTest()
+test1.removeFirstTest()
+test1.insertTests()
