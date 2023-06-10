@@ -275,7 +275,6 @@ class TestSinglyLinkedList {
     list.insert(90, list.lengthCycle());
     console.log(list.print())
   }
-  // TODO: COMPLETE TEST 
 }
 
 test1 = new TestSinglyLinkedList();
